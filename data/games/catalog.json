@@ -1,0 +1,54 @@
+{
+  "generated_at": "2026-04-22T05:01:35.210599+00:00",
+  "total_entries": 0,
+  "sources_requested": [
+    "bubbls/UGS-Assets",
+    "Neruvy/neruvy-games",
+    "Neruvy/web-port",
+    "gn-math/assets",
+    "shartshrek/web-port",
+    "genizy/web-port",
+    "Neruvy/duckmath",
+    "mathtut0r1ng/mathtut0r1ng.github.io",
+    "mathtut0r1ng/assets-backup"
+  ],
+  "source_errors": [
+    {
+      "source": "bubbls/UGS-Assets",
+      "error": "<urlopen error Tunnel connection failed: 403 Forbidden>"
+    },
+    {
+      "source": "Neruvy/neruvy-games",
+      "error": "<urlopen error Tunnel connection failed: 403 Forbidden>"
+    },
+    {
+      "source": "Neruvy/web-port",
+      "error": "<urlopen error Tunnel connection failed: 403 Forbidden>"
+    },
+    {
+      "source": "gn-math/assets",
+      "error": "<urlopen error Tunnel connection failed: 403 Forbidden>"
+    },
+    {
+      "source": "shartshrek/web-port",
+      "error": "<urlopen error Tunnel connection failed: 403 Forbidden>"
+    },
+    {
+      "source": "genizy/web-port",
+      "error": "<urlopen error Tunnel connection failed: 403 Forbidden>"
+    },
+    {
+      "source": "Neruvy/duckmath",
+      "error": "<urlopen error Tunnel connection failed: 403 Forbidden>"
+    },
+    {
+      "source": "mathtut0r1ng/mathtut0r1ng.github.io",
+      "error": "<urlopen error Tunnel connection failed: 403 Forbidden>"
+    },
+    {
+      "source": "mathtut0r1ng/assets-backup",
+      "error": "<urlopen error Tunnel connection failed: 403 Forbidden>"
+    }
+  ],
+  "entries": []
+}
