@@ -1,0 +1,47 @@
+[
+  {
+    "id": "ugs-assets",
+    "name": "bubbls/UGS-Assets",
+    "url": "https://github.com/bubbls/UGS-Assets"
+  },
+  {
+    "id": "neruvy-games",
+    "name": "Neruvy/neruvy-games (games)",
+    "url": "https://github.com/Neruvy/neruvy-games/tree/main/games"
+  },
+  {
+    "id": "neruvy-web-port",
+    "name": "Neruvy/web-port",
+    "url": "https://github.com/Neruvy/web-port"
+  },
+  {
+    "id": "gn-math-assets",
+    "name": "gn-math/assets",
+    "url": "https://github.com/gn-math/assets"
+  },
+  {
+    "id": "shartshrek-web-port",
+    "name": "shartshrek/web-port",
+    "url": "https://github.com/shartshrek/web-port"
+  },
+  {
+    "id": "genizy-web-port",
+    "name": "genizy/web-port",
+    "url": "https://github.com/genizy/web-port"
+  },
+  {
+    "id": "duckmath",
+    "name": "Neruvy/duckmath",
+    "url": "https://github.com/Neruvy/duckmath"
+  },
+  {
+    "id": "mathtut-site",
+    "name": "mathtut0r1ng/mathtut0r1ng.github.io",
+    "url": "https://github.com/mathtut0r1ng/mathtut0r1ng.github.io"
+  },
+  {
+    "id": "mathtut-assets-backup",
+    "name": "mathtut0r1ng/assets-backup",
+    "url": "https://github.com/mathtut0r1ng/assets-backup"
+  }
+]
