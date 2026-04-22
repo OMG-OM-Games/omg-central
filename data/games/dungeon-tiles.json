@@ -1,0 +1,16 @@
+{
+  "id": "dungeon-tiles",
+  "title": "Dungeon Tiles",
+  "url": "https://example.com/games/dungeon-tiles",
+  "embed_type": "external",
+  "thumbnail": "https://picsum.photos/seed/dungeon/320/180",
+  "genre": ["RPG", "Strategy"],
+  "tags": ["turn-based", "grid", "roguelite"],
+  "source_repo": "github.com/omg/strategy-core",
+  "license": "GPL-3.0",
+  "playable_status": "requires-plugin",
+  "added_at": "2026-01-20T07:15:00Z",
+  "updated_at": "2026-04-01T11:00:00Z",
+  "controls": ["mouse", "keyboard"],
+  "multiplayer": "singleplayer"
+}

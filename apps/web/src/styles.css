@@ -1,0 +1,141 @@
+:root {
+  color-scheme: dark;
+  font-family: Inter, system-ui, sans-serif;
+}
+
+body {
+  margin: 0;
+  background: #0f141d;
+  color: #f0f4f8;
+}
+
+.layout {
+  min-height: 100vh;
+}
+
+.top-menu {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: #121a24;
+  border-bottom: 1px solid #202a37;
+  padding: 0.75rem 1rem;
+}
+
+.top-menu h1 {
+  margin: 0 0 0.5rem;
+  font-size: 1.1rem;
+}
+
+.top-menu nav {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.top-menu button {
+  border: 1px solid #344355;
+  background: #1d2938;
+  color: inherit;
+  border-radius: 999px;
+  padding: 0.3rem 0.75rem;
+  cursor: pointer;
+}
+
+.top-menu button.active {
+  background: #3b82f6;
+  border-color: #3b82f6;
+}
+
+.content-wrap {
+  display: grid;
+  grid-template-columns: 270px 1fr;
+  min-height: calc(100vh - 95px);
+}
+
+.filters {
+  border-right: 1px solid #202a37;
+  padding: 1rem;
+  display: grid;
+  gap: 0.75rem;
+  align-content: start;
+}
+
+.filters label {
+  display: grid;
+  gap: 0.3rem;
+  font-size: 0.9rem;
+}
+
+select,
+input {
+  background: #1a2533;
+  border: 1px solid #334156;
+  color: inherit;
+  border-radius: 0.4rem;
+  padding: 0.45rem;
+}
+
+.catalog {
+  padding: 1rem;
+  display: grid;
+  gap: 1rem;
+}
+
+.catalog-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+
+.catalog-header input {
+  width: min(560px, 100%);
+}
+
+.virtual-list {
+  height: calc(100vh - 210px);
+  overflow: auto;
+  border: 1px solid #233042;
+  border-radius: 0.5rem;
+  background: #0d1219;
+}
+
+.game-card {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: calc(100% - 1rem);
+  margin: 0.5rem;
+  border: 1px solid #28384c;
+  border-radius: 0.5rem;
+  background: #151f2b;
+  padding: 0.75rem;
+  display: grid;
+  gap: 0.8rem;
+  grid-template-columns: 120px 1fr;
+  align-items: center;
+  height: 90px;
+}
+
+.game-card img {
+  width: 120px;
+  height: 68px;
+  object-fit: cover;
+  border-radius: 0.35rem;
+}
+
+.game-card a {
+  color: #93c5fd;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.game-card p {
+  margin: 0.25rem 0;
+}
+
+.meta {
+  color: #9caec4;
+  font-size: 0.85rem;
+}

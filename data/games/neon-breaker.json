@@ -1,0 +1,16 @@
+{
+  "id": "neon-breaker",
+  "title": "Neon Breaker",
+  "url": "https://example.com/games/neon-breaker",
+  "embed_type": "download",
+  "thumbnail": "https://picsum.photos/seed/neonbreaker/320/180",
+  "genre": ["Puzzle", "Arcade"],
+  "tags": ["physics", "minimal"],
+  "source_repo": "github.com/omg/puzzle-gems",
+  "license": "BSD-3-Clause",
+  "playable_status": "unknown",
+  "added_at": "2026-03-11T12:10:00Z",
+  "updated_at": "2026-03-11T12:10:00Z",
+  "controls": ["mouse"],
+  "multiplayer": "singleplayer"
+}

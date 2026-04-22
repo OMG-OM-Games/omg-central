@@ -1,0 +1,16 @@
+{
+  "id": "sky-forge",
+  "title": "Sky Forge",
+  "url": "https://example.com/games/sky-forge",
+  "embed_type": "iframe",
+  "thumbnail": "https://picsum.photos/seed/skyforge/320/180",
+  "genre": ["Adventure", "Sandbox"],
+  "tags": ["crafting", "open-world"],
+  "source_repo": "github.com/omg/sandbox-kit",
+  "license": "MPL-2.0",
+  "playable_status": "playable",
+  "added_at": "2026-04-15T10:00:00Z",
+  "updated_at": "2026-04-16T09:00:00Z",
+  "controls": ["keyboard", "mouse"],
+  "multiplayer": "online-multiplayer"
+}

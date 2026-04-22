@@ -1,0 +1,16 @@
+{
+  "id": "asteroid-sprint",
+  "title": "Asteroid Sprint",
+  "url": "https://example.com/games/asteroid-sprint",
+  "embed_type": "iframe",
+  "thumbnail": "https://picsum.photos/seed/asteroid/320/180",
+  "genre": ["Arcade", "Shooter"],
+  "tags": ["space", "retro", "score-attack"],
+  "source_repo": "github.com/omg/arcade-pack",
+  "license": "MIT",
+  "playable_status": "playable",
+  "added_at": "2026-03-01T12:00:00Z",
+  "updated_at": "2026-04-10T09:30:00Z",
+  "controls": ["keyboard"],
+  "multiplayer": "singleplayer"
+}

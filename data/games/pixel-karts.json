@@ -1,0 +1,16 @@
+{
+  "id": "pixel-karts",
+  "title": "Pixel Karts",
+  "url": "https://example.com/games/pixel-karts",
+  "embed_type": "iframe",
+  "thumbnail": "https://picsum.photos/seed/karts/320/180",
+  "genre": ["Racing"],
+  "tags": ["split-screen", "speedrun"],
+  "source_repo": "github.com/omg/racing-lab",
+  "license": "Apache-2.0",
+  "playable_status": "playable",
+  "added_at": "2026-02-14T18:20:00Z",
+  "updated_at": "2026-04-04T14:45:00Z",
+  "controls": ["keyboard", "gamepad"],
+  "multiplayer": "local-multiplayer"
+}
