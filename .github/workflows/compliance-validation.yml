@@ -1,0 +1,22 @@
+name: Compliance Validation
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+jobs:
+  validate-catalog:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Run compliance validation
+        run: python scripts/validate/validate_catalog.py data/catalog/imported-games.json --report-path data/reports/compliance-report.md
