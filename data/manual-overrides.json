@@ -1,0 +1,18 @@
+{
+  "force_hide_game_ids": [
+    "broken-entry"
+  ],
+  "title_fixes": {
+    "pixel-quest": "Pixel Quest Remastered"
+  },
+  "genre_fixes": {
+    "astro-dash": ["Arcade", "Sci-Fi"]
+  },
+  "thumbnail_fixes": {
+    "astro-dash": "https://cdn.example.com/games/astro-dash-v2.jpg"
+  },
+  "featured_game_ids": [
+    "pixel-quest",
+    "astro-dash"
+  ]
+}

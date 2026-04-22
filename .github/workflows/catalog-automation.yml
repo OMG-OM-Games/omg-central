@@ -1,0 +1,33 @@
+name: Catalog Automation
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 5 * * *'   # Daily at 05:00 UTC
+    - cron: '0 6 * * 1'   # Weekly every Monday at 06:00 UTC
+
+jobs:
+  ingest-and-validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Run ingestion + validation
+        run: python scripts/run_ingestion.py
+
+      - name: Upload generated artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: catalog-output
+          path: |
+            catalog.json
+            review-queue.json
+            diff-report.md
+            app/changelog.json
+            app/changelog.html

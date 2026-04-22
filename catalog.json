@@ -1,0 +1,26 @@
+[
+  {
+    "id": "pixel-quest",
+    "title": "Pixel Quest Remastered",
+    "genres": [
+      "Adventure",
+      "RPG"
+    ],
+    "thumbnail": "https://cdn.example.com/games/pixel-quest.jpg",
+    "ingested_at": "2026-04-20T00:00:00Z",
+    "is_featured": true,
+    "featured_rank": 1
+  },
+  {
+    "id": "astro-dash",
+    "title": "Astro Dash",
+    "genres": [
+      "Arcade",
+      "Sci-Fi"
+    ],
+    "thumbnail": "https://cdn.example.com/games/astro-dash-v2.jpg",
+    "ingested_at": "2026-04-20T00:00:00Z",
+    "is_featured": true,
+    "featured_rank": 2
+  }
+]

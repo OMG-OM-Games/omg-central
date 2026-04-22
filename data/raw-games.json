@@ -1,0 +1,23 @@
+[
+  {
+    "id": "astro-dash",
+    "title": "Astro Dash",
+    "genres": ["Arcade", "Runner"],
+    "thumbnail": "https://cdn.example.com/games/astro-dash.jpg",
+    "ingested_at": "2026-04-20T00:00:00Z"
+  },
+  {
+    "id": "pixel-quest",
+    "title": "Pixel Quest",
+    "genres": ["Adventure", "RPG"],
+    "thumbnail": "https://cdn.example.com/games/pixel-quest.jpg",
+    "ingested_at": "2026-04-20T00:00:00Z"
+  },
+  {
+    "id": "broken-entry",
+    "title": "",
+    "genres": [],
+    "thumbnail": "",
+    "ingested_at": "2026-04-20T00:00:00Z"
+  }
+]

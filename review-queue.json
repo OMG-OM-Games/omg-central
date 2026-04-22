@@ -1,0 +1,20 @@
+[
+  {
+    "id": "broken-entry",
+    "title": "",
+    "reasons": [
+      "Missing required field: title",
+      "Missing or empty required field: genres",
+      "Missing required field: thumbnail",
+      "force-hidden by manual override"
+    ],
+    "candidate": {
+      "id": "broken-entry",
+      "title": "",
+      "genres": [],
+      "thumbnail": "",
+      "ingested_at": "2026-04-20T00:00:00Z",
+      "is_featured": false
+    }
+  }
+]
