@@ -84,3 +84,12 @@ This is useful when importing a very large list and you still want immediate int
 For each URL in `repo_lists.json`, the builder now generates multiple iframe URL candidates (GitHub Pages, raw.githack, jsDelivr, and the original repo URL).
 
 In the UI, use **Try next embed URL** to cycle candidates until one loads for that repo/game.
+
+
+### Import individual games (not just repo homes)
+
+To add **individual game entries**, create per-repo file lists under `data/repo_filelists/` as described in `data/repo_filelists/README.md`.
+
+The catalog builder will import each HTML path as a standalone game with iframe candidates.
+
+Note: repo-list fallback URLs now avoid embedding `github.com` pages directly and prefer embeddable hosts (GitHub Pages / raw.githack / jsDelivr).

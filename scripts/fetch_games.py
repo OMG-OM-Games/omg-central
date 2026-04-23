@@ -20,6 +20,7 @@ SOURCES_FILE = ROOT / "data" / "sources.json"
 OUTPUT_FILE = ROOT / "data" / "games.json"
 MANUAL_FILE = ROOT / "data" / "manual_games.json"
 REPO_LIST_FILE = ROOT / "data" / "repo_lists.json"
+REPO_FILELIST_DIR = ROOT / "data" / "repo_filelists"
 
 GAME_FILE_RE = re.compile(r"(index|game|play|main)\.html?$", re.IGNORECASE)
 HTML_EXT = (".html", ".htm")
@@ -88,6 +89,48 @@ def repo_embed_candidates(owner: str, repo: str, scoped_path: str | None) -> lis
     ]
 
 
+def cdn_candidate_urls(owner: str, repo: str, path: str) -> list[str]:
+    path_clean = path.lstrip("/")
+    return [
+        f"https://raw.githack.com/{owner}/{repo}/main/{path_clean}",
+        f"https://raw.githack.com/{owner}/{repo}/master/{path_clean}",
+        f"https://cdn.jsdelivr.net/gh/{owner}/{repo}@main/{path_clean}",
+        f"https://cdn.jsdelivr.net/gh/{owner}/{repo}@master/{path_clean}",
+    ]
+
+
+def load_repo_filelist_entries(owner: str, repo: str) -> list[dict[str, Any]]:
+    file = REPO_FILELIST_DIR / f"{owner}__{repo}.txt"
+    if not file.exists():
+        return []
+
+    games: list[dict[str, Any]] = []
+    for idx, line in enumerate(file.read_text(encoding="utf-8").splitlines()):
+        path = line.strip()
+        if not path or path.startswith("#"):
+            continue
+        if not path.lower().endswith(HTML_EXT):
+            continue
+
+        fallbacks = [
+            f"https://{owner}.github.io/{repo}/{path.lstrip('/')}",
+            *cdn_candidate_urls(owner, repo, path),
+        ]
+        games.append({
+            "id": f"filelist_{owner}_{repo}_{idx}".replace("/", "_"),
+            "title": normalize_title(path),
+            "owner": owner,
+            "repo": repo,
+            "source": f"{owner}/{repo}",
+            "path": path,
+            "default_branch": "unknown",
+            "url": fallbacks[0],
+            "fallback_urls": fallbacks,
+            "kind": "repo_filelist_game",
+        })
+    return games
+
+
 def load_repo_list_entries() -> tuple[list[Source], list[dict[str, Any]]]:
     if not REPO_LIST_FILE.exists():
         return [], []
@@ -106,18 +149,24 @@ def load_repo_list_entries() -> tuple[list[Source], list[dict[str, Any]]]:
         dynamic_sources.append(Source(owner=owner, repo=repo, paths=paths))
 
         embed_candidates = repo_embed_candidates(owner, repo, scoped_path)
+        filelist_entries = load_repo_filelist_entries(owner, repo)
+        repo_entries.extend(filelist_entries)
+
+        if filelist_entries:
+            continue
+
         repo_entries.append(
             {
                 "id": f"repo_list_{idx}_{owner}_{repo}",
-                "title": f"Collection: {owner}/{repo}",
+                "title": f"Home: {owner}/{repo}",
                 "owner": owner,
                 "repo": repo,
                 "source": "repo-lists",
                 "path": scoped_path or ".",
                 "default_branch": "unknown",
                 "url": embed_candidates[0],
-                "fallback_urls": [repo_url, *embed_candidates],
-                "kind": "repo_collection",
+                "fallback_urls": embed_candidates,
+                "kind": "repo_home",
                 "repo_url": repo_url,
             }
         )
