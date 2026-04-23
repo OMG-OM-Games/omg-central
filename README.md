@@ -66,3 +66,14 @@ python3 scripts/fetch_games.py
   - source repo
   - path
   - playable URL candidates
+
+
+## Integrating raw repo lists
+
+If you have a plain list of GitHub URLs (including `tree/...` links), put them in `data/repo_lists.json`.
+
+The builder will:
+- treat those URLs as source repos to scan
+- auto-create "Collection" entries in the UI so each repo link is still visible/clickable even if scanning fails
+
+This is useful when importing a very large list and you still want immediate integration before full indexing finishes.

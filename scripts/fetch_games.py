@@ -19,6 +19,7 @@ ROOT = Path(__file__).resolve().parents[1]
 SOURCES_FILE = ROOT / "data" / "sources.json"
 OUTPUT_FILE = ROOT / "data" / "games.json"
 MANUAL_FILE = ROOT / "data" / "manual_games.json"
+REPO_LIST_FILE = ROOT / "data" / "repo_lists.json"
 
 GAME_FILE_RE = re.compile(r"(index|game|play|main)\.html?$", re.IGNORECASE)
 HTML_EXT = (".html", ".htm")
@@ -58,6 +59,54 @@ class GitHubClient:
         return self._request_json(url)
 
 
+
+
+
+def parse_repo_url(url: str) -> tuple[str, str, str | None]:
+    parsed = urllib.parse.urlparse(url)
+    parts = [p for p in parsed.path.split("/") if p]
+    if len(parts) < 2:
+        raise ValueError(f"Invalid GitHub repo URL: {url}")
+    owner, repo = parts[0], parts[1]
+    scoped_path = None
+    if len(parts) >= 5 and parts[2] == "tree":
+        scoped_path = "/".join(parts[4:])
+    return owner, repo, scoped_path
+
+
+def load_repo_list_entries() -> tuple[list[Source], list[dict[str, Any]]]:
+    if not REPO_LIST_FILE.exists():
+        return [], []
+
+    raw = json.loads(REPO_LIST_FILE.read_text(encoding="utf-8"))
+    dynamic_sources: list[Source] = []
+    repo_entries: list[dict[str, Any]] = []
+
+    for idx, repo_url in enumerate(raw):
+        try:
+            owner, repo, scoped_path = parse_repo_url(repo_url)
+        except ValueError:
+            continue
+
+        paths = [scoped_path] if scoped_path else ["."]
+        dynamic_sources.append(Source(owner=owner, repo=repo, paths=paths))
+
+        repo_entries.append(
+            {
+                "id": f"repo_list_{idx}_{owner}_{repo}",
+                "title": f"Collection: {owner}/{repo}",
+                "owner": owner,
+                "repo": repo,
+                "source": "repo-lists",
+                "path": scoped_path or ".",
+                "default_branch": "unknown",
+                "url": repo_url,
+                "fallback_urls": [repo_url],
+                "kind": "repo_collection",
+            }
+        )
+
+    return dynamic_sources, repo_entries
 
 def load_sources(path: Path) -> list[Source]:
     raw = json.loads(path.read_text(encoding="utf-8"))
@@ -181,10 +230,14 @@ def main() -> None:
         raise SystemExit(f"Missing sources file: {SOURCES_FILE}")
 
     sources = load_sources(SOURCES_FILE)
+    dynamic_sources, repo_entries = load_repo_list_entries()
+    if dynamic_sources:
+        sources = dynamic_sources
     token = os.getenv("GITHUB_TOKEN")
     client = GitHubClient(token=token)
 
     catalog = build_catalog(sources, client)
+    catalog.extend(repo_entries)
     catalog.extend(load_manual_games())
 
     payload = {

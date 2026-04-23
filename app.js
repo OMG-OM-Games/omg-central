@@ -62,13 +62,18 @@ function selectGame(id) {
   if (!game) return;
 
   ui.selectedTitle.textContent = `${game.title} — ${game.source}`;
-  ui.viewer.src = game.url;
   ui.openNewTab.href = game.url;
+  if (game.kind === 'repo_collection') {
+    ui.viewer.src = 'about:blank';
+  } else {
+    ui.viewer.src = game.url;
+  }
   ui.meta.textContent = JSON.stringify({
     source: game.source,
     path: game.path,
     default_branch: game.default_branch,
     fallback_urls: game.fallback_urls,
+    kind: game.kind || 'game',
   }, null, 2);
 
   renderList();

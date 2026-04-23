@@ -1,8 +1,134 @@
 {
-  "generated_at": "2026-04-23T00:23:07Z",
+  "generated_at": "2026-04-23T00:32:30Z",
   "source_count": 9,
-  "game_count": 1,
+  "game_count": 10,
   "games": [
+    {
+      "id": "repo_list_0_bubbls_UGS-Assets",
+      "title": "Collection: bubbls/UGS-Assets",
+      "owner": "bubbls",
+      "repo": "UGS-Assets",
+      "source": "repo-lists",
+      "path": ".",
+      "default_branch": "unknown",
+      "url": "https://github.com/bubbls/UGS-Assets",
+      "fallback_urls": [
+        "https://github.com/bubbls/UGS-Assets"
+      ],
+      "kind": "repo_collection"
+    },
+    {
+      "id": "repo_list_1_Neruvy_neruvy-games",
+      "title": "Collection: Neruvy/neruvy-games",
+      "owner": "Neruvy",
+      "repo": "neruvy-games",
+      "source": "repo-lists",
+      "path": "games",
+      "default_branch": "unknown",
+      "url": "https://github.com/Neruvy/neruvy-games/tree/main/games",
+      "fallback_urls": [
+        "https://github.com/Neruvy/neruvy-games/tree/main/games"
+      ],
+      "kind": "repo_collection"
+    },
+    {
+      "id": "repo_list_2_Neruvy_web-port",
+      "title": "Collection: Neruvy/web-port",
+      "owner": "Neruvy",
+      "repo": "web-port",
+      "source": "repo-lists",
+      "path": ".",
+      "default_branch": "unknown",
+      "url": "https://github.com/Neruvy/web-port",
+      "fallback_urls": [
+        "https://github.com/Neruvy/web-port"
+      ],
+      "kind": "repo_collection"
+    },
+    {
+      "id": "repo_list_3_gn-math_assets",
+      "title": "Collection: gn-math/assets",
+      "owner": "gn-math",
+      "repo": "assets",
+      "source": "repo-lists",
+      "path": ".",
+      "default_branch": "unknown",
+      "url": "https://github.com/gn-math/assets",
+      "fallback_urls": [
+        "https://github.com/gn-math/assets"
+      ],
+      "kind": "repo_collection"
+    },
+    {
+      "id": "repo_list_4_shartshrek_web-port",
+      "title": "Collection: shartshrek/web-port",
+      "owner": "shartshrek",
+      "repo": "web-port",
+      "source": "repo-lists",
+      "path": ".",
+      "default_branch": "unknown",
+      "url": "https://github.com/shartshrek/web-port",
+      "fallback_urls": [
+        "https://github.com/shartshrek/web-port"
+      ],
+      "kind": "repo_collection"
+    },
+    {
+      "id": "repo_list_5_genizy_web-port",
+      "title": "Collection: genizy/web-port",
+      "owner": "genizy",
+      "repo": "web-port",
+      "source": "repo-lists",
+      "path": ".",
+      "default_branch": "unknown",
+      "url": "https://github.com/genizy/web-port",
+      "fallback_urls": [
+        "https://github.com/genizy/web-port"
+      ],
+      "kind": "repo_collection"
+    },
+    {
+      "id": "repo_list_6_Neruvy_duckmath",
+      "title": "Collection: Neruvy/duckmath",
+      "owner": "Neruvy",
+      "repo": "duckmath",
+      "source": "repo-lists",
+      "path": ".",
+      "default_branch": "unknown",
+      "url": "https://github.com/Neruvy/duckmath",
+      "fallback_urls": [
+        "https://github.com/Neruvy/duckmath"
+      ],
+      "kind": "repo_collection"
+    },
+    {
+      "id": "repo_list_7_mathtut0r1ng_mathtut0r1ng.github.io",
+      "title": "Collection: mathtut0r1ng/mathtut0r1ng.github.io",
+      "owner": "mathtut0r1ng",
+      "repo": "mathtut0r1ng.github.io",
+      "source": "repo-lists",
+      "path": ".",
+      "default_branch": "unknown",
+      "url": "https://github.com/mathtut0r1ng/mathtut0r1ng.github.io",
+      "fallback_urls": [
+        "https://github.com/mathtut0r1ng/mathtut0r1ng.github.io"
+      ],
+      "kind": "repo_collection"
+    },
+    {
+      "id": "repo_list_8_mathtut0r1ng_assets-backup",
+      "title": "Collection: mathtut0r1ng/assets-backup",
+      "owner": "mathtut0r1ng",
+      "repo": "assets-backup",
+      "source": "repo-lists",
+      "path": ".",
+      "default_branch": "unknown",
+      "url": "https://github.com/mathtut0r1ng/assets-backup",
+      "fallback_urls": [
+        "https://github.com/mathtut0r1ng/assets-backup"
+      ],
+      "kind": "repo_collection"
+    },
     {
       "id": "manual_0_Example_Game_URL",
       "title": "Example Game URL",
