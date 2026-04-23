@@ -79,3 +79,5 @@ pre {
   .layout { grid-template-columns: 1fr; }
   .left { border-right: none; border-bottom: 1px solid var(--line); }
 }
+
+#nextEmbed { background:#0b1220; color:var(--text); border:1px solid var(--line); border-radius:8px; padding:.35rem .6rem; margin-right:.45rem; }

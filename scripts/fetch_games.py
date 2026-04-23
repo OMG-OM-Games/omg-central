@@ -74,6 +74,20 @@ def parse_repo_url(url: str) -> tuple[str, str, str | None]:
     return owner, repo, scoped_path
 
 
+def repo_embed_candidates(owner: str, repo: str, scoped_path: str | None) -> list[str]:
+    p = (scoped_path or "").strip("/")
+    p_prefix = f"/{p}" if p else ""
+    index_suffix = f"/{p}/index.html" if p else "/index.html"
+    return [
+        f"https://{owner}.github.io/{repo}{p_prefix}",
+        f"https://{owner}.github.io/{repo}{index_suffix}",
+        f"https://raw.githack.com/{owner}/{repo}/main{index_suffix}",
+        f"https://raw.githack.com/{owner}/{repo}/master{index_suffix}",
+        f"https://cdn.jsdelivr.net/gh/{owner}/{repo}@main{index_suffix}",
+        f"https://cdn.jsdelivr.net/gh/{owner}/{repo}@master{index_suffix}",
+    ]
+
+
 def load_repo_list_entries() -> tuple[list[Source], list[dict[str, Any]]]:
     if not REPO_LIST_FILE.exists():
         return [], []
@@ -91,6 +105,7 @@ def load_repo_list_entries() -> tuple[list[Source], list[dict[str, Any]]]:
         paths = [scoped_path] if scoped_path else ["."]
         dynamic_sources.append(Source(owner=owner, repo=repo, paths=paths))
 
+        embed_candidates = repo_embed_candidates(owner, repo, scoped_path)
         repo_entries.append(
             {
                 "id": f"repo_list_{idx}_{owner}_{repo}",
@@ -100,9 +115,10 @@ def load_repo_list_entries() -> tuple[list[Source], list[dict[str, Any]]]:
                 "source": "repo-lists",
                 "path": scoped_path or ".",
                 "default_branch": "unknown",
-                "url": repo_url,
-                "fallback_urls": [repo_url],
+                "url": embed_candidates[0],
+                "fallback_urls": [repo_url, *embed_candidates],
                 "kind": "repo_collection",
+                "repo_url": repo_url,
             }
         )
 

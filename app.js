@@ -6,6 +6,7 @@ const ui = {
   selectedTitle: document.getElementById('selectedTitle'),
   viewer: document.getElementById('viewer'),
   openNewTab: document.getElementById('openNewTab'),
+  nextEmbed: document.getElementById('nextEmbed'),
   meta: document.getElementById('meta'),
 };
 
@@ -13,6 +14,7 @@ let state = {
   allGames: [],
   filteredGames: [],
   selectedId: null,
+  embedIndexById: {},
 };
 
 function normalize(s) {
@@ -56,24 +58,31 @@ function renderList() {
   }
 }
 
+function resolveEmbedUrl(game) {
+  const urls = (game.fallback_urls && game.fallback_urls.length ? game.fallback_urls : [game.url]).filter(Boolean);
+  const idx = state.embedIndexById[game.id] || 0;
+  return { url: urls[idx % urls.length], idx, total: urls.length, urls };
+}
+
 function selectGame(id) {
   state.selectedId = id;
   const game = state.filteredGames.find((g) => g.id === id) || state.allGames.find((g) => g.id === id);
   if (!game) return;
 
+  const embed = resolveEmbedUrl(game);
   ui.selectedTitle.textContent = `${game.title} — ${game.source}`;
-  ui.openNewTab.href = game.url;
-  if (game.kind === 'repo_collection') {
-    ui.viewer.src = 'about:blank';
-  } else {
-    ui.viewer.src = game.url;
-  }
+  ui.openNewTab.href = embed.url;
+  ui.viewer.src = embed.url;
   ui.meta.textContent = JSON.stringify({
     source: game.source,
     path: game.path,
     default_branch: game.default_branch,
-    fallback_urls: game.fallback_urls,
     kind: game.kind || 'game',
+    repo_url: game.repo_url || null,
+    embed_url: embed.url,
+    embed_index: embed.idx + 1,
+    embed_total: embed.total,
+    fallback_urls: embed.urls,
   }, null, 2);
 
   renderList();
@@ -111,6 +120,13 @@ async function init() {
 
   ui.search.addEventListener('input', applyFilters);
   ui.sourceFilter.addEventListener('change', applyFilters);
+  ui.nextEmbed.addEventListener('click', () => {
+    const game = state.allGames.find((g) => g.id === state.selectedId);
+    if (!game) return;
+    const urls = (game.fallback_urls && game.fallback_urls.length ? game.fallback_urls : [game.url]).filter(Boolean);
+    state.embedIndexById[game.id] = ((state.embedIndexById[game.id] || 0) + 1) % urls.length;
+    selectGame(game.id);
+  });
 }
 
 init().catch((err) => {

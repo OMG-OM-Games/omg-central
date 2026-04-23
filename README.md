@@ -77,3 +77,10 @@ The builder will:
 - auto-create "Collection" entries in the UI so each repo link is still visible/clickable even if scanning fails
 
 This is useful when importing a very large list and you still want immediate integration before full indexing finishes.
+
+
+### Embedding behavior for repo-list entries
+
+For each URL in `repo_lists.json`, the builder now generates multiple iframe URL candidates (GitHub Pages, raw.githack, jsDelivr, and the original repo URL).
+
+In the UI, use **Try next embed URL** to cycle candidates until one loads for that repo/game.

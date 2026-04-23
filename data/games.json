@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-04-23T00:32:30Z",
+  "generated_at": "2026-04-23T00:39:31Z",
   "source_count": 9,
   "game_count": 10,
   "games": [
@@ -11,11 +11,18 @@
       "source": "repo-lists",
       "path": ".",
       "default_branch": "unknown",
-      "url": "https://github.com/bubbls/UGS-Assets",
+      "url": "https://bubbls.github.io/UGS-Assets",
       "fallback_urls": [
-        "https://github.com/bubbls/UGS-Assets"
+        "https://github.com/bubbls/UGS-Assets",
+        "https://bubbls.github.io/UGS-Assets",
+        "https://bubbls.github.io/UGS-Assets/index.html",
+        "https://raw.githack.com/bubbls/UGS-Assets/main/index.html",
+        "https://raw.githack.com/bubbls/UGS-Assets/master/index.html",
+        "https://cdn.jsdelivr.net/gh/bubbls/UGS-Assets@main/index.html",
+        "https://cdn.jsdelivr.net/gh/bubbls/UGS-Assets@master/index.html"
       ],
-      "kind": "repo_collection"
+      "kind": "repo_collection",
+      "repo_url": "https://github.com/bubbls/UGS-Assets"
     },
     {
       "id": "repo_list_1_Neruvy_neruvy-games",
@@ -25,11 +32,18 @@
       "source": "repo-lists",
       "path": "games",
       "default_branch": "unknown",
-      "url": "https://github.com/Neruvy/neruvy-games/tree/main/games",
+      "url": "https://Neruvy.github.io/neruvy-games/games",
       "fallback_urls": [
-        "https://github.com/Neruvy/neruvy-games/tree/main/games"
+        "https://github.com/Neruvy/neruvy-games/tree/main/games",
+        "https://Neruvy.github.io/neruvy-games/games",
+        "https://Neruvy.github.io/neruvy-games/games/index.html",
+        "https://raw.githack.com/Neruvy/neruvy-games/main/games/index.html",
+        "https://raw.githack.com/Neruvy/neruvy-games/master/games/index.html",
+        "https://cdn.jsdelivr.net/gh/Neruvy/neruvy-games@main/games/index.html",
+        "https://cdn.jsdelivr.net/gh/Neruvy/neruvy-games@master/games/index.html"
       ],
-      "kind": "repo_collection"
+      "kind": "repo_collection",
+      "repo_url": "https://github.com/Neruvy/neruvy-games/tree/main/games"
     },
     {
       "id": "repo_list_2_Neruvy_web-port",
@@ -39,11 +53,18 @@
       "source": "repo-lists",
       "path": ".",
       "default_branch": "unknown",
-      "url": "https://github.com/Neruvy/web-port",
+      "url": "https://Neruvy.github.io/web-port",
       "fallback_urls": [
-        "https://github.com/Neruvy/web-port"
+        "https://github.com/Neruvy/web-port",
+        "https://Neruvy.github.io/web-port",
+        "https://Neruvy.github.io/web-port/index.html",
+        "https://raw.githack.com/Neruvy/web-port/main/index.html",
+        "https://raw.githack.com/Neruvy/web-port/master/index.html",
+        "https://cdn.jsdelivr.net/gh/Neruvy/web-port@main/index.html",
+        "https://cdn.jsdelivr.net/gh/Neruvy/web-port@master/index.html"
       ],
-      "kind": "repo_collection"
+      "kind": "repo_collection",
+      "repo_url": "https://github.com/Neruvy/web-port"
     },
     {
       "id": "repo_list_3_gn-math_assets",
@@ -53,11 +74,18 @@
       "source": "repo-lists",
       "path": ".",
       "default_branch": "unknown",
-      "url": "https://github.com/gn-math/assets",
+      "url": "https://gn-math.github.io/assets",
       "fallback_urls": [
-        "https://github.com/gn-math/assets"
+        "https://github.com/gn-math/assets",
+        "https://gn-math.github.io/assets",
+        "https://gn-math.github.io/assets/index.html",
+        "https://raw.githack.com/gn-math/assets/main/index.html",
+        "https://raw.githack.com/gn-math/assets/master/index.html",
+        "https://cdn.jsdelivr.net/gh/gn-math/assets@main/index.html",
+        "https://cdn.jsdelivr.net/gh/gn-math/assets@master/index.html"
       ],
-      "kind": "repo_collection"
+      "kind": "repo_collection",
+      "repo_url": "https://github.com/gn-math/assets"
     },
     {
       "id": "repo_list_4_shartshrek_web-port",
@@ -67,11 +95,18 @@
       "source": "repo-lists",
       "path": ".",
       "default_branch": "unknown",
-      "url": "https://github.com/shartshrek/web-port",
+      "url": "https://shartshrek.github.io/web-port",
       "fallback_urls": [
-        "https://github.com/shartshrek/web-port"
+        "https://github.com/shartshrek/web-port",
+        "https://shartshrek.github.io/web-port",
+        "https://shartshrek.github.io/web-port/index.html",
+        "https://raw.githack.com/shartshrek/web-port/main/index.html",
+        "https://raw.githack.com/shartshrek/web-port/master/index.html",
+        "https://cdn.jsdelivr.net/gh/shartshrek/web-port@main/index.html",
+        "https://cdn.jsdelivr.net/gh/shartshrek/web-port@master/index.html"
       ],
-      "kind": "repo_collection"
+      "kind": "repo_collection",
+      "repo_url": "https://github.com/shartshrek/web-port"
     },
     {
       "id": "repo_list_5_genizy_web-port",
@@ -81,11 +116,18 @@
       "source": "repo-lists",
       "path": ".",
       "default_branch": "unknown",
-      "url": "https://github.com/genizy/web-port",
+      "url": "https://genizy.github.io/web-port",
       "fallback_urls": [
-        "https://github.com/genizy/web-port"
+        "https://github.com/genizy/web-port",
+        "https://genizy.github.io/web-port",
+        "https://genizy.github.io/web-port/index.html",
+        "https://raw.githack.com/genizy/web-port/main/index.html",
+        "https://raw.githack.com/genizy/web-port/master/index.html",
+        "https://cdn.jsdelivr.net/gh/genizy/web-port@main/index.html",
+        "https://cdn.jsdelivr.net/gh/genizy/web-port@master/index.html"
       ],
-      "kind": "repo_collection"
+      "kind": "repo_collection",
+      "repo_url": "https://github.com/genizy/web-port"
     },
     {
       "id": "repo_list_6_Neruvy_duckmath",
@@ -95,11 +137,18 @@
       "source": "repo-lists",
       "path": ".",
       "default_branch": "unknown",
-      "url": "https://github.com/Neruvy/duckmath",
+      "url": "https://Neruvy.github.io/duckmath",
       "fallback_urls": [
-        "https://github.com/Neruvy/duckmath"
+        "https://github.com/Neruvy/duckmath",
+        "https://Neruvy.github.io/duckmath",
+        "https://Neruvy.github.io/duckmath/index.html",
+        "https://raw.githack.com/Neruvy/duckmath/main/index.html",
+        "https://raw.githack.com/Neruvy/duckmath/master/index.html",
+        "https://cdn.jsdelivr.net/gh/Neruvy/duckmath@main/index.html",
+        "https://cdn.jsdelivr.net/gh/Neruvy/duckmath@master/index.html"
       ],
-      "kind": "repo_collection"
+      "kind": "repo_collection",
+      "repo_url": "https://github.com/Neruvy/duckmath"
     },
     {
       "id": "repo_list_7_mathtut0r1ng_mathtut0r1ng.github.io",
@@ -109,11 +158,18 @@
       "source": "repo-lists",
       "path": ".",
       "default_branch": "unknown",
-      "url": "https://github.com/mathtut0r1ng/mathtut0r1ng.github.io",
+      "url": "https://mathtut0r1ng.github.io/mathtut0r1ng.github.io",
       "fallback_urls": [
-        "https://github.com/mathtut0r1ng/mathtut0r1ng.github.io"
+        "https://github.com/mathtut0r1ng/mathtut0r1ng.github.io",
+        "https://mathtut0r1ng.github.io/mathtut0r1ng.github.io",
+        "https://mathtut0r1ng.github.io/mathtut0r1ng.github.io/index.html",
+        "https://raw.githack.com/mathtut0r1ng/mathtut0r1ng.github.io/main/index.html",
+        "https://raw.githack.com/mathtut0r1ng/mathtut0r1ng.github.io/master/index.html",
+        "https://cdn.jsdelivr.net/gh/mathtut0r1ng/mathtut0r1ng.github.io@main/index.html",
+        "https://cdn.jsdelivr.net/gh/mathtut0r1ng/mathtut0r1ng.github.io@master/index.html"
       ],
-      "kind": "repo_collection"
+      "kind": "repo_collection",
+      "repo_url": "https://github.com/mathtut0r1ng/mathtut0r1ng.github.io"
     },
     {
       "id": "repo_list_8_mathtut0r1ng_assets-backup",
@@ -123,11 +179,18 @@
       "source": "repo-lists",
       "path": ".",
       "default_branch": "unknown",
-      "url": "https://github.com/mathtut0r1ng/assets-backup",
+      "url": "https://mathtut0r1ng.github.io/assets-backup",
       "fallback_urls": [
-        "https://github.com/mathtut0r1ng/assets-backup"
+        "https://github.com/mathtut0r1ng/assets-backup",
+        "https://mathtut0r1ng.github.io/assets-backup",
+        "https://mathtut0r1ng.github.io/assets-backup/index.html",
+        "https://raw.githack.com/mathtut0r1ng/assets-backup/main/index.html",
+        "https://raw.githack.com/mathtut0r1ng/assets-backup/master/index.html",
+        "https://cdn.jsdelivr.net/gh/mathtut0r1ng/assets-backup@main/index.html",
+        "https://cdn.jsdelivr.net/gh/mathtut0r1ng/assets-backup@master/index.html"
       ],
-      "kind": "repo_collection"
+      "kind": "repo_collection",
+      "repo_url": "https://github.com/mathtut0r1ng/assets-backup"
     },
     {
       "id": "manual_0_Example_Game_URL",
