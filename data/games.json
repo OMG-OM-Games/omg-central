@@ -1,0 +1,20 @@
+{
+  "generated_at": "2026-04-23T00:23:07Z",
+  "source_count": 9,
+  "game_count": 1,
+  "games": [
+    {
+      "id": "manual_0_Example_Game_URL",
+      "title": "Example Game URL",
+      "owner": "manual",
+      "repo": "manual",
+      "source": "manual",
+      "path": "replace/me.html",
+      "default_branch": "manual",
+      "url": "https://example.com/game/index.html",
+      "fallback_urls": [
+        "https://example.com/game/index.html"
+      ]
+    }
+  ]
+}

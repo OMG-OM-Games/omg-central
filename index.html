@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>OMG Central</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <h1>OMG Central</h1>
+      <p id="stats">Loading catalog...</p>
+    </header>
+
+    <main class="layout">
+      <section class="panel left">
+        <div class="controls">
+          <input id="search" type="search" placeholder="Search games..." />
+          <select id="sourceFilter">
+            <option value="">All sources</option>
+          </select>
+        </div>
+        <div id="gameList" class="game-list"></div>
+      </section>
+
+      <section class="panel right">
+        <div class="viewer-head">
+          <h2 id="selectedTitle">Select a game</h2>
+          <a id="openNewTab" target="_blank" rel="noopener">Open in new tab</a>
+        </div>
+        <iframe id="viewer" title="Game viewer" sandbox="allow-scripts allow-same-origin allow-forms"></iframe>
+        <pre id="meta"></pre>
+      </section>
+    </main>
+
+    <script src="app.js"></script>
+  </body>
+</html>
