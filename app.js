@@ -1,5 +1,6 @@
 'use strict';
 
+// ── Category metadata ───────────────────────────────────────────────────────
 const CAT = {
   all:         { label: 'All Games',   color: '#7c3aed', emoji: '🎮' },
   action:      { label: 'Action',      color: '#ef4444', emoji: '⚡' },
@@ -18,36 +19,48 @@ const CAT = {
   other:       { label: 'Other',       color: '#64748b', emoji: '✨' },
 };
 
+// ── State ───────────────────────────────────────────────────────────────────
 let activeCat  = 'all';
 let searchTerm = '';
+let openIdx    = -1;
 
-// ── Build category nav ──────────────────────────────────────────────────────
-function buildNav() {
+// ── DOM refs ────────────────────────────────────────────────────────────────
+const $  = id => document.getElementById(id);
+const grid     = $('grid');
+const empty    = $('empty');
+const overlay  = $('overlay');
+const frame    = $('game-frame');
+const loader   = $('loader');
+const catBar   = $('cat-bar');
+const searchEl = $('search');
+const clearBtn = $('search-clear');
+
+// ── Category bar ────────────────────────────────────────────────────────────
+function buildCatBar() {
   const counts = {};
   GAMES.forEach(g => { counts[g.cat] = (counts[g.cat] || 0) + 1; });
 
-  const nav = document.getElementById('cat-nav');
-  nav.innerHTML = Object.entries(CAT).map(([id, m]) => {
+  catBar.innerHTML = Object.entries(CAT).map(([id, m]) => {
     const n = id === 'all' ? GAMES.length : (counts[id] || 0);
     if (id !== 'all' && !n) return '';
-    return `<button class="cat-btn${id === 'all' ? ' active' : ''}" data-cat="${id}">
-      <span class="cat-dot" style="background:${m.color}"></span>
-      <span class="cat-name">${m.label}</span>
-      <span class="cat-num">${n}</span>
+    return `<button class="cat-pill${id === 'all' ? ' active' : ''}" data-cat="${id}">
+      <span class="cat-pill-emoji">${m.emoji}</span>
+      <span>${m.label}</span>
+      <span class="cat-pill-count">${n}</span>
     </button>`;
   }).join('');
 
-  nav.addEventListener('click', e => {
-    const btn = e.target.closest('.cat-btn');
+  catBar.addEventListener('click', e => {
+    const btn = e.target.closest('.cat-pill');
     if (!btn) return;
-    nav.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
+    catBar.querySelectorAll('.cat-pill').forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
     activeCat = btn.dataset.cat;
     render();
   });
 }
 
-// ── Render game grid ────────────────────────────────────────────────────────
+// ── Game grid ───────────────────────────────────────────────────────────────
 function render() {
   const lower = searchTerm.toLowerCase();
   const list  = GAMES.filter(g =>
@@ -55,31 +68,33 @@ function render() {
     (!lower || g.name.toLowerCase().includes(lower))
   );
 
-  const grid  = document.getElementById('grid');
-  const empty = document.getElementById('empty');
-  const count = document.getElementById('count-label');
+  const n = list.length;
+  $('header-count').textContent = `${n} game${n === 1 ? '' : 's'}`;
 
-  count.textContent = list.length
-    ? `${list.length} game${list.length === 1 ? '' : 's'}`
-    : '0 games';
-
-  if (!list.length) {
+  if (!n) {
     grid.innerHTML = '';
     empty.classList.remove('hidden');
     return;
   }
 
   empty.classList.add('hidden');
+
   grid.innerHTML = list.map(g => {
     const m   = CAT[g.cat];
     const idx = GAMES.indexOf(g);
-    const bg  = `linear-gradient(135deg, ${m.color}30 0%, ${m.color}0c 100%)`;
-    return `<div class="card" data-idx="${idx}" data-cat="${g.cat}" title="${g.name}">
+    const bg  = `linear-gradient(145deg, ${m.color}2e 0%, ${m.color}0a 100%)`;
+    return `<div class="card" data-idx="${idx}" title="${g.name}">
       <div class="card-thumb" style="background:${bg}">
         ${g.thumb
           ? `<img src="${g.thumb}" alt="${g.name}" loading="lazy">`
           : `<span class="card-emoji">${m.emoji}</span>`
         }
+        <div class="card-play">
+          <svg viewBox="0 0 24 24" fill="currentColor">
+            <circle cx="12" cy="12" r="10" fill="rgba(255,255,255,.15)"/>
+            <polygon points="10,8 16,12 10,16" fill="white"/>
+          </svg>
+        </div>
       </div>
       <div class="card-body">
         <div class="card-name">${g.name}</div>
@@ -89,66 +104,99 @@ function render() {
   }).join('');
 }
 
-// ── Open game in overlay ────────────────────────────────────────────────────
-function openGame(idx) {
-  const g   = GAMES[idx];
-  const m   = CAT[g.cat];
-  const frame   = document.getElementById('game-frame');
-  const loading = document.getElementById('loading');
-  const overlay = document.getElementById('overlay');
+// Delegated click — attached once
+grid.addEventListener('click', e => {
+  const card = e.target.closest('.card');
+  if (card) openGame(+card.dataset.idx);
+});
 
-  document.getElementById('overlay-title').textContent = g.name;
+// ── Game loading ─────────────────────────────────────────────────────────────
+async function openGame(idx) {
+  const g = GAMES[idx];
+  const m = CAT[g.cat];
+  openIdx = idx;
 
-  const badge = document.getElementById('overlay-badge');
-  badge.textContent        = m.label;
-  badge.style.background   = m.color + '22';
-  badge.style.color        = m.color;
-
-  loading.style.display = 'flex';
-  frame.style.opacity   = '0';
-  frame.src             = g.url;
-
-  frame.onload = () => {
-    loading.style.display = 'none';
-    frame.style.opacity   = '1';
-  };
+  $('overlay-name').textContent = g.name;
+  const badge = $('overlay-badge');
+  badge.textContent      = m.label;
+  badge.style.background = m.color + '22';
+  badge.style.color      = m.color;
 
   overlay.classList.remove('hidden');
-  document.body.style.overflow = 'hidden';
+  loader.style.display  = 'flex';
+  frame.style.opacity   = '0';
+  frame.removeAttribute('srcdoc');
+  frame.src = '';
+
+  try {
+    const res = await fetch(g.raw);
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    let html = await res.text();
+
+    // Inject <base> so relative asset paths resolve against the GitHub Pages host
+    const baseTag = `<base href="${g.url}">`;
+    if (/<head(\s[^>]*)?>/.test(html)) {
+      html = html.replace(/<head(\s[^>]*)?>/i, m => m + '\n' + baseTag);
+    } else if (/<html(\s[^>]*)?>/.test(html)) {
+      html = html.replace(/<html(\s[^>]*)?>/i, m => m + '\n<head>' + baseTag + '</head>');
+    } else {
+      html = '<head>' + baseTag + '</head>\n' + html;
+    }
+
+    frame.srcdoc = html;
+  } catch (err) {
+    // Fallback: embed the GitHub Pages URL directly
+    console.warn(`[OMG] srcdoc fetch failed for "${g.name}", falling back to src:`, err);
+    frame.src = g.url;
+  }
+
+  frame.onload = () => {
+    loader.style.display = 'none';
+    frame.style.opacity  = '1';
+  };
 }
 
-function closeOverlay() {
-  document.getElementById('overlay').classList.add('hidden');
-  document.getElementById('game-frame').src = '';
-  document.getElementById('loading').style.display = 'none';
-  document.body.style.overflow = '';
+function closeGame() {
+  overlay.classList.add('hidden');
+  frame.removeAttribute('srcdoc');
+  frame.src = '';
+  loader.style.display = 'none';
+  frame.style.opacity  = '0';
+  openIdx = -1;
 }
 
 function goFullscreen() {
-  const el = document.getElementById('game-frame');
-  if      (el.requestFullscreen)       el.requestFullscreen();
-  else if (el.webkitRequestFullscreen) el.webkitRequestFullscreen();
+  const el = frame;
+  (el.requestFullscreen || el.webkitRequestFullscreen || el.mozRequestFullScreen
+    || function(){}).call(el);
 }
 
-// ── Init ────────────────────────────────────────────────────────────────────
-function init() {
-  buildNav();
+// ── Search ──────────────────────────────────────────────────────────────────
+searchEl.addEventListener('input', e => {
+  searchTerm = e.target.value;
+  clearBtn.classList.toggle('hidden', !searchTerm);
   render();
+});
 
-  document.getElementById('search').addEventListener('input', e => {
-    searchTerm = e.target.value;
-    render();
-  });
+clearBtn.addEventListener('click', () => {
+  searchEl.value = '';
+  searchTerm = '';
+  clearBtn.classList.add('hidden');
+  searchEl.focus();
+  render();
+});
 
-  // Delegated click on grid — attached once
-  document.getElementById('grid').addEventListener('click', e => {
-    const card = e.target.closest('.card');
-    if (card) openGame(+card.dataset.idx);
-  });
+// ── Controls ────────────────────────────────────────────────────────────────
+$('close-btn').addEventListener('click', closeGame);
+$('fs-btn').addEventListener('click', goFullscreen);
 
-  document.getElementById('back-btn').addEventListener('click', closeOverlay);
-  document.getElementById('fullscreen-btn').addEventListener('click', goFullscreen);
-  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeOverlay(); });
-}
+document.addEventListener('keydown', e => {
+  if (!overlay.classList.contains('hidden')) {
+    if (e.key === 'Escape') closeGame();
+    if (e.key === 'f' || e.key === 'F') goFullscreen();
+  }
+});
 
-init();
+// ── Boot ────────────────────────────────────────────────────────────────────
+buildCatBar();
+render();
