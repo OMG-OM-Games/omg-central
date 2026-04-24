@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OMG Games</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎮</text></svg>">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- ── Top Header ───────────────────────────────────────────────── -->
+  <header id="header">
+    <div class="header-left">
+      <div class="logo">
+        <span class="logo-badge">OMG</span>
+        <span class="logo-text">Games</span>
+      </div>
+    </div>
+
+    <div class="header-center">
+      <div class="search-wrap">
+        <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+          <circle cx="11" cy="11" r="8"/>
+          <path d="m21 21-4.35-4.35"/>
+        </svg>
+        <input id="search" type="text" placeholder="Search games…" autocomplete="off" spellcheck="false">
+        <button id="search-clear" class="hidden" title="Clear">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <path d="M18 6 6 18M6 6l12 12"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <div class="header-right">
+      <span id="header-count"></span>
+    </div>
+  </header>
+
+  <!-- ── Category Bar ─────────────────────────────────────────────── -->
+  <div id="cat-bar"></div>
+
+  <!-- ── Game Grid ────────────────────────────────────────────────── -->
+  <main id="main">
+    <div id="grid"></div>
+    <div id="empty" class="hidden">
+      <div class="empty-icon">🎮</div>
+      <div class="empty-msg">No games found</div>
+      <div class="empty-sub">Try a different search or category</div>
+    </div>
+  </main>
+
+  <!-- ── Game Overlay ─────────────────────────────────────────────── -->
+  <div id="overlay" class="hidden">
+    <div id="overlay-bar">
+      <div id="overlay-left">
+        <button id="close-btn" title="Close (Esc)">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <path d="M19 12H5M12 5l-7 7 7 7"/>
+          </svg>
+        </button>
+        <span id="overlay-name"></span>
+        <span id="overlay-badge"></span>
+      </div>
+      <div id="overlay-right">
+        <button id="fs-btn" title="Fullscreen (F)">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+    <div id="frame-wrap">
+      <div id="loader">
+        <div class="spinner"></div>
+        <div class="loader-text">Loading game…</div>
+      </div>
+      <iframe
+        id="game-frame"
+        allow="autoplay; fullscreen; gamepad"
+      ></iframe>
+    </div>
+  </div>
+
+  <script src="games.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
