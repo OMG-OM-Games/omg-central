@@ -22,7 +22,6 @@ const CAT = {
 // ── State ───────────────────────────────────────────────────────────────────
 let activeCat  = 'all';
 let searchTerm = '';
-let openIdx    = -1;
 
 // ── DOM refs ────────────────────────────────────────────────────────────────
 const $  = id => document.getElementById(id);
@@ -111,10 +110,9 @@ grid.addEventListener('click', e => {
 });
 
 // ── Game loading ─────────────────────────────────────────────────────────────
-async function openGame(idx) {
+function openGame(idx) {
   const g = GAMES[idx];
   const m = CAT[g.cat];
-  openIdx = idx;
 
   $('overlay-name').textContent = g.name;
   const badge = $('overlay-badge');
@@ -123,46 +121,24 @@ async function openGame(idx) {
   badge.style.color      = m.color;
 
   overlay.classList.remove('hidden');
-  loader.style.display  = 'flex';
-  frame.style.opacity   = '0';
-  frame.removeAttribute('srcdoc');
+  loader.style.display = 'flex';
+  frame.style.opacity  = '0';
   frame.src = '';
 
-  try {
-    const res = await fetch(g.raw);
-    if (!res.ok) throw new Error(`HTTP ${res.status}`);
-    let html = await res.text();
-
-    // Inject <base> so relative asset paths resolve against the GitHub Pages host
-    const baseTag = `<base href="${g.url}">`;
-    if (/<head(\s[^>]*)?>/.test(html)) {
-      html = html.replace(/<head(\s[^>]*)?>/i, m => m + '\n' + baseTag);
-    } else if (/<html(\s[^>]*)?>/.test(html)) {
-      html = html.replace(/<html(\s[^>]*)?>/i, m => m + '\n<head>' + baseTag + '</head>');
-    } else {
-      html = '<head>' + baseTag + '</head>\n' + html;
-    }
-
-    frame.srcdoc = html;
-  } catch (err) {
-    // Fallback: embed the GitHub Pages URL directly
-    console.warn(`[OMG] srcdoc fetch failed for "${g.name}", falling back to src:`, err);
-    frame.src = g.url;
-  }
-
+  // Load directly — iframe runs in the game's own origin so same-origin
+  // fetches (Unity data files, Construct 2 assets, etc.) are never blocked by CORS
   frame.onload = () => {
     loader.style.display = 'none';
     frame.style.opacity  = '1';
   };
+  frame.src = g.url;
 }
 
 function closeGame() {
   overlay.classList.add('hidden');
-  frame.removeAttribute('srcdoc');
   frame.src = '';
   loader.style.display = 'none';
   frame.style.opacity  = '0';
-  openIdx = -1;
 }
 
 function goFullscreen() {
