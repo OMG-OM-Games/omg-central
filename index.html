@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OMG Games</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <aside id="sidebar">
+    <div class="logo">
+      <div class="logo-badge">OMG</div>
+      <span class="logo-label">Games</span>
+    </div>
+
+    <div class="search-box">
+      <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+        <circle cx="11" cy="11" r="8"/>
+        <path d="m21 21-4.35-4.35"/>
+      </svg>
+      <input id="search" type="text" placeholder="Search games…" autocomplete="off" spellcheck="false">
+    </div>
+
+    <div class="sidebar-label">Categories</div>
+    <nav id="cat-nav"></nav>
+
+    <div class="sidebar-footer">
+      <span id="count-label">Loading…</span>
+    </div>
+  </aside>
+
+  <main id="main">
+    <div id="grid"></div>
+    <div id="empty" class="hidden">
+      <div class="empty-emoji">🎮</div>
+      <div class="empty-text">No games found</div>
+    </div>
+  </main>
+
+  <div id="overlay" class="hidden">
+    <div id="overlay-bar">
+      <div id="overlay-left">
+        <button id="back-btn" title="Close (Esc)">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <path d="M19 12H5M12 5l-7 7 7 7"/>
+          </svg>
+        </button>
+        <span id="overlay-title"></span>
+        <span id="overlay-badge"></span>
+      </div>
+      <div id="overlay-right">
+        <button id="fullscreen-btn" title="Fullscreen">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+    <div id="frame-wrap">
+      <div id="loading"></div>
+      <iframe
+        id="game-frame"
+        allow="autoplay; fullscreen; gamepad; pointer-lock"
+        sandbox="allow-scripts allow-same-origin allow-forms allow-popups allow-modals allow-pointer-lock allow-popups-to-escape-sandbox"
+        allowfullscreen
+      ></iframe>
+    </div>
+  </div>
+
+  <script src="games.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
